@@ -1,1 +1,1 @@
-Hello uday This is a test
+This is a new local repository
