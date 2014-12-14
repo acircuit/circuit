@@ -65,8 +65,7 @@ public class AdvisorMyAccountUpcomingSessionViewDetailController extends HttpSer
 
 		BasicConfigurator.configure();
 		logger.info("Entered doGet method of AdvisorMyAccountUpcomingSessionViewDetailController");
-		BasicConfigurator.configure();
-		logger.info("Entered doGet method of AdvisorMyAccountUpcomingSessionViewDetailController");
+		
 		int advisorId = 0;
 		String username = "";
 		int userId = 0;

@@ -52,8 +52,15 @@
 						String userImage = (String)request.getAttribute("userImage");
 						String username =	(String)request.getAttribute("userName");
 						String advisorname = (String)request.getAttribute("advisorName");
-						List<UserRequestDTO> userRequestDetails = (List<UserRequestDTO>)request.getAttribute("requestDetails");	
+												
+						List<UserRequestDTO> userRequestDetails = (List<UserRequestDTO>)request.getAttribute("requestDetails");
+						List<SessionDTO> sessionDetail = (List<SessionDTO>)request.getAttribute("sessionDetail");	
+						List<AdvisorNewDatesDTO> advisorNewDates = (List<AdvisorNewDatesDTO>)request.getAttribute("advisorNewDates");	
+						
 						pageContext.setAttribute("userRequestDetails", userRequestDetails);
+						pageContext.setAttribute("sessionDetail", sessionDetail);
+						pageContext.setAttribute("advisorNewDates", advisorNewDates);
+
 	%>
 </head>
 
@@ -203,6 +210,58 @@
                                             </div>
 										  </div>	
 										</div>
+									<c:if test="${sessionDetail.size() > 0}">
+										<c:forEach var="session" items="${sessionDetail}">
+											<h3>Session Details</h3>
+												<div class="form-group">
+														<label for="icode" class="col-md-3 control-label">Session Plan</label>
+													<div class="col-md-9">
+														<textarea class="form-control" rows="3" readonly><c:out value="${session.getSessionPlan()}"/></textarea>
+													</div>
+												</div>
+												<c:if test="${session.getStatus().equals('PENDING FOR USER PAYMENT') }">
+													<div class="form-group">
+															<label for="icode" class="col-md-3 control-label">Accepted Date</label>
+														<div class="col-md-9">
+															<p class="form-control"><b><c:out value="${session.getAcceptedDate()}"/></b></p>
+														</div>
+													</div>
+												</c:if>
+												<c:if test="${session.getStatus().equals('PENDING FOR USER PAYMENT WITH NEW DATES') &&  advisorNewDates.size() > 0}">
+												<h4>New Dates Provided By Advisor</h4>
+													<c:forEach var="dates" items="${advisorNewDates}">
+														<div class="col-md-6" >
+															<div class="radio">
+				                                                <label>
+				                                                    <c:out value="${dates.getNewDate1()}"></c:out>
+				                                                </label>
+				                                            </div>
+				                                            <div class="radio">
+				                                                <label>
+				                                                    <c:out value="${dates.getNewDate1()}"></c:out>
+				                                                </label>
+				                                            </div>
+				                                             <div class="radio">
+				                                                <label>
+				                                                    <c:out value="${dates.getNewDate3()}"></c:out>
+				                                                </label>
+				                                            </div>
+			                                            </div>
+		                                            </c:forEach>
+												</c:if>
+												<div class="form-group">
+													<div class="row">
+														<div class="col-md-9" style="text-align: center;margin-top: 20px;margin-left: 30px">
+															<c:url value="/AdminMyAccountSetStatusNoUserPayment" var="myURL">
+											   						<c:param name="rId" value="${userRequest.getRequestId()}"/>
+											   						<c:param name="sId" value="${session.getSessionId()}"></c:param>
+															</c:url>
+																<a href="${myURL}" class="btn btn-info">SET SESSION CANCELLED DUE NO USER PAYMENT </a>
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+											</c:if>
 										<div class="form-group">
 											<!-- Button -->                     
 											<div class="row">

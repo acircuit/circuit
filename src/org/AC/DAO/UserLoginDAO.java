@@ -27,7 +27,7 @@ public class UserLoginDAO {
 			try {
 
 				conn =Util.connect();
-				String query ="SELECT USER_ID FROM userdetails WHERE EMAIL = ? AND PASSWORD = ? AND ISACTIVE=?";
+				String query ="SELECT USER_ID,FULL_NAME FROM userdetails WHERE EMAIL = ? AND PASSWORD = ? AND ISACTIVE=?";
 				PreparedStatement pstmt = conn.prepareStatement(query);
 				pstmt.setString(1,username);
 				pstmt.setString(2,securedPassword);

@@ -88,8 +88,10 @@ public class UserMyAccountCancelledSessionController extends HttpServlet {
 			String status3 = "SESSION CANCELLED DUE TO USER UNAVAILABILITY";
 			String status4 = "SESSION CANCELLED DUE TO NO USER PAYMENT";
 			String status5 = "SESSION REJECTED BY USER";
+			String status6 = "SESSION CANCELLED DUE TO USER NO SHOW";
+
 			AdvisorMyAccountSessionDAO session = new AdvisorMyAccountSessionDAO();
-			list = session.getSessionDetailsUsingUserId(userId, status1,status2,status3,status4,status5);
+			list = session.getSessionDetailsUsingUserId(userId, status1,status2,status3,status4,status5,status6);
 			for (SessionDTO sessionDTO : list) {
 				requestIds.add(sessionDTO.getRequestId());
 			}

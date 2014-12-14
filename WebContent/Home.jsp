@@ -10,8 +10,36 @@
 
     <title>Advisor</title>
 	<style type="text/css"> 
-		.bdesign{font-size:20px !important;}
+		@font-face {
+			font-family:"custom_light";
+			src: url("assets/fonts/NGCDMC__.TTF") /* EOT file for IE */
+		}
 		
+		@font-face {
+			font-family:"custom_bold";
+			src: url("assets/fonts/NGCDBC__.TTF") /* TTF file for CSS3 browsers */
+		}
+
+		h1,h2,h3,h5{
+			font-family:'custom_bold' !important;
+			}
+			
+		h4{ font-family:'custom_light' !important;
+			font-size:19px !important;
+			}	
+		p{font-family:'custom_light' !important;}
+		
+		video {  
+        width:100%;  
+        height:650px;  
+        position: relative;  
+			}
+		body{color:#fff !important;}
+		.fa-lg{font-size:1.2em !important;}
+		.bdesign{font-size:20px !important;}
+		.social{padding-bottom:9px !important;}
+		.foot-size{font-size:14px !important;}
+		.foot-color{color:#717171;}
 		@media only screen and (max-width:700px){
 		.font_size{font-size:22px !important;}
 		}
@@ -24,7 +52,7 @@
 		.bdesign{font-size:14px !important;}
 		.font_size{font-size:22px !important;}
 		}
-		 </style>  	
+		 </style>  		 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
@@ -33,166 +61,237 @@
 
     <!-- Fonts from Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-    
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   
   </head>
 
   <body>
-
-   <%@include file="/Header.jsp" %>
-	<div id="headerwrap">
+	
+  <div style="margin-left:5.9%;margin-right:5.9%">
+  	   <%@include file="/Header_Home.jsp" %>
+	<div id="headerwrap" style="background-image: url('assets/img/WebMail/HomePage/Panel_1_Backgound.png');min-height:400px;">
 		<div class="container">	
 			<div class="row">
-				<table width="100%" border="0">
-				<tr>
-				<td class="" style="border-color:#fff;padding:1% 2% 1% 25%">
-				<h2><b style="background-color:#ccc;text-align:center;padding:8px 8px 4px 8px" class="bdesign">Give wings to your career</b></h2></td><td></td>
-				</tr>
+				<div class="col-md-12 centered" style="margin-top:-1%">
+					<h2 style="color:#f8f8f8;font-size:44px !important">Have questions about your career?</br>Take charge today!</b></h2>
+					<h4 style="color:#f8f8f8;font-size:23px">Connect to professionals who have actually been in the field.</h4>
+				</div>
 				
-				<tr>
-				<td style="border-left:10px;border-bottom:10px;border-color:#fff;padding:1% 2% 1% 20%">
-				<h2><b class="bdesign" style="background-color:#ccc;text-align:center;font-size:20px;padding:8px 8px 4px 8px">Book a session</b></h2></td><td></td>
-				</tr>
+				<div class="col-md-8 centered" style="margin-left:29%;padding-top:3%;width:61%">
+					<div class="col-md-3 centered" style="width:22%">
+					<img  src="assets/img/WebMail/HomePage/Panel_1_Icon_1.png" width="55" alt="">
+					<h4 style="color:#f8f8f8;font-size:17px !important">Search and pick </br>your advisor</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-3 centered" style="width:22%">
+					<img  src="assets/img/WebMail/HomePage/Panel_1_Icon_2.png" width="55" alt="">
+					<h4 style="color:#f8f8f8;font-size:17px !important">Book a session as per </br>your convenience</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-3 centered" style="width:22%">
+					<img  src="assets/img/WebMail/HomePage/Panel_1_Icon_3.png" width="55" alt="">
+					<h4 style="color:#f8f8f8;font-size:17px !important">Take a forward leap</br>in your career</h4>
+					</div><!--/col-lg-4 -->
+				</div>
 				
-				<tr>
-				<td style="border-left:10px;border-bottom:10px;border-color:#fff;padding:1% 2% 1% 12%">
-				<h2><b class="bdesign" style="background-color:#ccc;text-align:center;font-size:20px;padding:8px 8px 4px 8px">Search for advisor</b></h2></td>
-				<td style="padding:1% 0 1% 10%"><h2><b class="bdesign" style="background-color:#ccc;text-align:center;font-size:20px;padding:8px 8px 4px 8px">Become an Advisor</b></h2></td>
-				</tr>
-				</table>
+				<div class="col-md-4 centered" style="margin-left:34%;padding-top:2.5%">
+				<form class="" role="form">
+				<div class="input-group">
+				<input type="text" class="form-control" placeholder="Search site...">
+					 <span class="input-group-btn">
+					 <button class="btn btn-default" type="button" style="height:42px"><i class="glyphicon glyphicon-search"></i></button> 
+					 </span>
+				 </div>
+				</form>
+				</div>
 				
+			
 			</div><!-- /row -->
 		</div><!-- /container -->
 	</div><!-- /headerwrap -->
-
-<div class="container" style="padding-top:2%">
-	<div class="centered">
-		<div class="flex-video widescreen"><iframe width="80%" height="400"
-										src="http://www.youtube.com/embed/kEkNITP3WYI">
-										</iframe></div>
-	</div>	
-</div>
 	
-	<div class="container">
-		<div class="row mt centered">
-			<div class="col-lg-6 col-lg-offset-3">
-				<h1>Our Services</h1>
-			</div>
-		</div><!-- /row -->
-		
-		<div class="row mt centered">
-			<div class="col-lg-4">
-				<img src="assets/img/APJ.jpg" width="180" alt="">
-				<h4>Career Conversation</h4>
-				<p>Talk to experts about any kind of career related queries you have</p>
-			</div><!--/col-lg-4 -->
-
-			<div class="col-lg-4">
-				<img src="assets/img/DP.jpg" width="180" alt="">
-				<h4>Mock Interview</h4>
-				<p>Experience a mock interview before actually going for the real one</p>
-
-			</div><!--/col-lg-4 -->
-
-			<div class="col-lg-4">
-				<img src="assets/img/DP.jpg" width="180" alt="">
-				<h4>CV Critique</h4>
-				<p>Get your cv critiqued by </br>experienced professionals</p>
-
-			</div><!--/col-lg-4 -->
-			
-			<div class="col-lg-4">
-				<img src="assets/img/ga.png" width="180" alt="">
-				<h4>E Mentoring</h4>
-				<p>Get mentored by the best in the industry</p>
-
-			</div><!--/col-lg-4 -->
-			
-			<div class="col-lg-4">
-				<img src="assets/img/ac.jpg" width="180" alt="">
-				<h4>Startup Mentoring</h4>
-				<p>Are you a startup looking for guidance ? Here's your oppurtunity</p>
-
-			</div><!--/col-lg-4 -->
-			<div class="col-lg-4">
-				<img src="assets/img/grp.jpg" width="180" alt="">
-				<h4>Personal Workshops</h4>
-				<p>Get one on one workshops on various topics</p>
-
-			</div><!--/col-lg-4 -->
-		</div><!-- /row -->
-	</div><!-- /container -->
-	
-	
-	<div class="container">
-		<hr>
-		<div class="row centered">
-	<h1 class="font_size">Find your advisor on the basis of occupation, area of expertise etc</h1>
-			<div class="col-lg-6 col-lg-offset-3">
-				<div style="width:100%;">
-			<form class="" role="form">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Search here">
-							 <span class="input-group-btn">
-							 <button class="btn btn-default" type="button" style="height:42px"> Go </button> 
-							 </span>
-					 </div>
-					</form>
-					</div>					
-			</div>
-			<div class="col-lg-3"></div>
-		</div><!-- /row -->
-		<hr>
-	</div><!-- /container -->
 
 	<div class="container">
-		<div class="row mt centered">
-			<div class="col-lg-6 col-lg-offset-3">
-				<h1>Featured Advisors</h1>
-			</div>
-		</div><!-- /row -->
-		
-		<div class="row mt centered">
-			<div class="col-lg-4">
-				<img class="img-circle" src="assets/img/lavi.PNG" width="140" alt="">
-				<h4>Lavi</h4>
-				<p>I am available for career conversations and mock interviews. </p>
-				<p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i class="glyphicon glyphicon-globe"></i></p>
-			</div><!--/col-lg-4 -->
-
-			<div class="col-lg-4">
-				<img class="img-circle" src="assets/img/aditya.png" width="140" alt="">
-				<h4>Aditya Raina</h4>
-				<p>I am available for career conversations, cv critique and e mentoring</p>
-				<p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i class="glyphicon glyphicon-globe"></i></p>
-			</div><!--/col-lg-4 -->
-
-			<div class="col-lg-4">
-				<img class="img-circle" src="assets/img/uday.png" width="140" alt="">
-				<h4>Uday Khatry</h4>
-				<p>I am available for personal workshops and e mentoring</p>
-				<p><i class="glyphicon glyphicon-send"></i> <i class="glyphicon glyphicon-phone"></i> <i class="glyphicon glyphicon-globe"></i></p>
-			</div><!--/col-lg-4 -->
-		</div><!-- /row -->
-	</div><!-- /container -->
-	
-	<div class="container">
-		<hr>
 		<div class="row centered">
 			<div class="col-lg-6 col-lg-offset-3">
-				<form class="form-inline" role="form">
-				  <div class="form-group">
-				    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email address">
-				  </div>
-				  <button type="submit" class="btn btn-warning btn-lg">Invite Me!</button>
-				</form>					
+				<img src="assets/img/WebMail/HomePage/Panel_1_Node.png" width="50%" height="67" alt=""/>
 			</div>
-			<div class="col-lg-3"></div>
+		
+			<div class="col-lg-2 col-lg-offset-1" >
+			<div class="col-lg-4" style="padding-top: 5%; padding-left: 15%;">
+				<div style="background-image: url('assets/img/WebMail/HomePage/Here_To_Help_Icon.png');min-height:50px;background-size:cover;width:50px">
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div style="background-image: url('assets/img/WebMail/HomePage/Here_To_Help_Bar.png');min-height:50px;background-size:cover;width:118px">
+					<h4 style="color:#f8f8f8;padding-top:2%">We are here</br>to help</h4>
+				</div>	
+			</div>
+			</div>
+			
 		</div><!-- /row -->
-		<hr>
-		<p class="centered">Created by Hemant Katyal - 2014</p>
-	</div><!-- /container -->
+	</div>
 	
+	
+		<div class="container">
+			<video controls="controls" poster="vid.jpg">
+				<source src="Wildlife.wmv" type="video/wmv">Browser Not Supporting
+			</video>
+		</div>
+
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<img src="assets/img/WebMail/HomePage/Panel_2_Node.png" width="50%" height="67" alt=""/>
+			</div>
+		</div><!-- /row -->
+	</div>
+	
+	<div style="background-image: url('assets/img/WebMail/HomePage/Panel_2_BG_All.png');min-height:400px;background-size:cover;">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12 centered" style="padding-top:1%">
+					<h1 style="color:#e5e5e5">Services</h1>
+				</div>
+				
+				<div class="col-md-10 centered" style="padding-left:17%;padding-right:5%;padding-top:3%">
+					<div class="col-md-3 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_2_Icon_1.png" width="55" alt="">
+					<h4 style="color:#f8f8f8"><b>Career Talk</b></h4>
+					<h4 style="color:#f8f8f8;font-size:16px !important">Catch up with an</br>industry expert</br>for a quick</br>session on</br>your doubts</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-3 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_2_Icon_2.png" width="55" alt="">
+					<h4 style="color:#f8f8f8;"><b>Mock Interview</b></h4>
+					<h4 style="color:#f8f8f8;font-size:16px !important">Experience a</br>mock interview</br>before actually</br>going for the</br>real one</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-3 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_2_Icon_3.png" width="55" alt="">
+					<h4 style="color:#f8f8f8"><b>CV Critique</b></h4>
+					<h4 style="color:#f8f8f8;font-size:16px !important">Get your CV</br>critiqued by top</br>recruiters to see</br>where you stand</br>in the competition</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-3 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_2_Icon_4.png" width="55" alt="">
+					<h4 style="color:#f8f8f8"><b>Personal Workshop</b></h4>
+					<h4 style="color:#f8f8f8;font-size:16px !important">Get a one on one</br>workshop with</br>experts to gain</br>knowledge</h4>
+					</div><!--/col-lg-4 -->
+				</div>
+				
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- / -->
+
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<img src="assets/img/WebMail/HomePage/Panel_3_Node.png" width="50%" height="67" alt=""/>
+			</div>
+		</div><!-- /row -->
+	</div>
+	
+	<div style="background-image: url('assets/img/WebMail/HomePage/Panel_3_BG_Expert.png');min-height:400px;background-color:#E0E0E0;background-position:center center;background-size:cover;">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12 centered">
+					<h1 style="color:#555">Learn from the best</br>in the business</br>to be the best in business!</h1>
+				</div>
+				
+				<div class="col-md-12 centered" style="padding-left:15%;padding-right:15%;padding-top:3%">
+					<div class="col-md-4 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_3_Icon_1.png" width="130" alt="">
+					<h4 style="color:#474747">Connect instantly </br>via email, phone </br>and webchat</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-4 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_3_Icon_2.png" width="55" alt="">
+					<h4 style="color:#474747">Find experts </br>across various </br>fields</h4>
+					</div><!--/col-lg-4 -->
+					<div class="col-md-4 centered">
+					<img  src="assets/img/WebMail/HomePage/Panel_3_Icon_3.png" width="55" alt="">
+					<h4 style="color:#474747">Bid goodbye to your </br>career troubles</h4>
+					</div><!--/col-lg-4 -->
+				</div>
+				
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- -->
+	
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<img src="assets/img/WebMail/HomePage/Panel_4_Node.png" width="50%" height="67" alt=""/>
+			</div>
+		</div><!-- /row -->
+	</div>
+	
+	<div style="background-image: url('assets/img/WebMail/HomePage/Panel_4_BG_All.png');min-height:400px;background-color:#E0E0E0;background-position:center center;background-size:cover;">
+		<div class="container">	
+			<div class="row">
+				<div class="col-md-12 centered">
+					<h1 style="color:#e5e5e5">Be an Advisor!</br></h1>
+					<h4 style="color:#fff"></br>Make a huge impact by providing guidance and offering your knowledge</br>
+						to a wide array of people and get paid at the same time.</h4>
+				</div>
+				
+				<div class="col-md-12 centered" >
+					<img  src="assets/img/WebMail/HomePage/Panel_4_Icon_1.png" width="55" alt="">
+				</div>
+				
+				<div class="col-md-12 centered">
+					<h4 style="color:#e5e5e5">Offer advice and guidance |  Earn money while doing something of value</h4>
+					<h4 style="color:#e5e5e5">No Stress! Choose your own work load  |  Work from the comfort of your own home</h4>
+				</div>
+				
+				<div class="col-md-12 centered">
+					<div style="height:20px"></div>
+					<button type="button" class="btn btn-default" style="width:10%;border-radius:0px"><b>Join Us!</b></button>
+				</div>
+				
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- -->
+	
+	<div class="container">
+		<div class="row centered">
+			<div class="col-lg-6 col-lg-offset-3">
+				<img src="assets/img/WebMail/HomePage/Panel_5_Node.png" width="50%" height="67" alt=""/>
+			</div>
+		</div><!-- /row -->
+	</div>
+
+	<div style="background-color:#e5e5e5;min-height:400px;">	
+			<div class="row centered">
+				<div class="col-md-12 centered">
+					<h1 style="color:#555">Featured Advisors</h1>
+					<div style="height:20px"></div>
+				</div>
+				<div class="col-lg-12">
+					<div class="col-lg-4">
+						<img src="assets/img/featuredadvisor1.jpg" style="width:90%;height:180px">
+						<h3 style="color:#555">Professor</h3>
+						<h4 style="color:#878787">I am available for career conversations and mock interviews</h4>
+					</div><!--/col-lg-4 -->
+
+					<div class="col-lg-4">
+						<img src="assets/img/featuredadvisor2.jpg" style="width:90%;height:180px" alt="">
+						<h3 style="color:#555">Financial Consultant</h3>
+						<h4 style="color:#878787">I am available for career conversations, cv critique and e-mentoring</h4>
+					</div><!--/col-lg-4 -->
+
+					<div class="col-lg-4">
+						<img src="assets/img/featuredadvisor3.jpg" style="width:90%;height:180px">
+						<h3 style="color:#555">Chef</h3>
+						<h4 style="color:#878787">I am available for personal workshops and e-mentoring</h4>
+					</div><!--/col-lg-4 -->
+			</div>
+			</div><!-- /row -->
+		</div><!-- /container -->
+		  </div>
+
+		 <%@include file="/Footer.jsp" %>
+		
+		</div>
+		<!--footer ends--->
+			
+	</div>
+	<!--main container-->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

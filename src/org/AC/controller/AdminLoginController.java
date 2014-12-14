@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.AC.DAO.AdminLoginDAO;
 import org.AC.DAO.UserLoginDAO;
@@ -64,6 +65,8 @@ public class AdminLoginController extends HttpServlet {
 					AdminLoginDAO dao = new AdminLoginDAO();
 					Boolean isAuthenticated = dao.CheckLoginDetails(username, securedPassword);
 					if(isAuthenticated){
+						HttpSession session=request.getSession(); 
+						session.setAttribute("admin", true);
 						response.sendRedirect("AdminMyAccount.jsp");
 					}else{
 						request.setAttribute("loginverificationfailed","true");

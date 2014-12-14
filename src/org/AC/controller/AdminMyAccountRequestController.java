@@ -2,7 +2,7 @@
  * ********************************ADVISOR CIRCUIT*************************************************
  * ************************************************************************************************
  * @author AdvisorCircuit
- * @Date 10/12/2014enerated method stub
+ * @Date 10/12/2014
  * ************************************************************************************************/
 package org.AC.controller;
 
@@ -64,32 +64,28 @@ public class AdminMyAccountRequestController extends HttpServlet {
 		//Retrieving the AdvisorId's and UserId's
 		List<Integer> userIds = new ArrayList<Integer>();
 		List<Integer> advisorIds = new ArrayList<Integer>();
-
-		for (UserRequestDTO userRequestDTO : requestList) {
-			userIds.add(userRequestDTO.getUserId());
-			advisorIds.add(userRequestDTO.getAdvisorId());
-		}
-		
-		//Retrieving the user details from the retrieved userId's
-		List<UserDetailsDTO> userDetails = new ArrayList<UserDetailsDTO>();
-		AdminRequestDAO userDetail = new AdminRequestDAO();
-		userDetails = userDetail.getUserDetails(userIds);
-		
-		//Retrieving the advisor details from the retrieved advisorid's
-		List<AdvisorProfileDTO> advisorDetails = new ArrayList<AdvisorProfileDTO>();
-		AdminRequestDAO advisorDetail = new AdminRequestDAO();
-		advisorDetails= advisorDetail.getAdvisorDetailsUsingAdvisorId(advisorIds);
-		
-		if(userDetails.size() > 0 && advisorDetails.size() > 0 && requestList.size() > 0){
+		List<Integer> requestIdsWithNewDates = new ArrayList<Integer>();
+			for (UserRequestDTO userRequestDTO : requestList) {
+				userIds.add(userRequestDTO.getUserId());
+				advisorIds.add(userRequestDTO.getAdvisorId());
+			}
 			
+			//Retrieving the user details from the retrieved userId's
+			List<UserDetailsDTO> userDetails = new ArrayList<UserDetailsDTO>();
+			AdminRequestDAO userDetail = new AdminRequestDAO();
+			userDetails = userDetail.getUserDetails(userIds);
+			
+			//Retrieving the advisor details from the retrieved advisorid's
+			List<AdvisorProfileDTO> advisorDetails = new ArrayList<AdvisorProfileDTO>();
+			AdminRequestDAO advisorDetail = new AdminRequestDAO();
+			advisorDetails= advisorDetail.getAdvisorDetailsUsingAdvisorId(advisorIds);
+			
+				
 			request.setAttribute("requestDetails", requestList);
 			request.setAttribute("userDetails", userDetails);
 			request.setAttribute("advisorDetails", advisorDetails);
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/Admin_Requests.jsp");
 	        rd.forward(request, response);
-			
-		}
-		
 		
 		logger.info("Exit doGet method of AdminMyAccountRequestController");
 	}

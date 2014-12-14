@@ -51,10 +51,12 @@ public class AdminRequestDAO {
 			List<UserRequestDTO> requests = new ArrayList<UserRequestDTO>();
 			try {
 				conn =Util.connect();
-				String query ="SELECT * FROM userrequest WHERE STATUS = ? OR STATUS = ?";
+				String query ="SELECT * FROM userrequest WHERE STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ?";
 				PreparedStatement pstmt = conn.prepareStatement(query);
 				pstmt.setString(1,"PENDING FOR ADMIN APPROVAL");
-				pstmt.setString(2,"REQUEST REJECTED BY ADVISOR");
+				pstmt.setString(2,"PENDING FOR ADVISOR APPROVAL");
+				pstmt.setString(3,"REQUEST ACCEPTED BY ADVISOR");
+				pstmt.setString(4,"REQUEST ACCEPTED BY ADVISOR WITH NEW DATES");
 			    results = pstmt.executeQuery();
 			    while(results.next()){
 			    	UserRequestDTO request = new UserRequestDTO();

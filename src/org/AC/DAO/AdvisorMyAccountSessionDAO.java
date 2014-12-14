@@ -144,6 +144,7 @@ public List<SessionDTO> getSessionDetailsUsingUserId(int uId, String status){
  *			 status3 = "SESSION CANCELLED DUE TO USER UNAVAILABILITY";
  *			 status4 = "SESSION CANCELLED DUE TO NO USER PAYMENT";
  *			 status5 = "SESSION REJECTED BY USER"; 
+ *			 status6 = "SESSION CANCELLED DUE TO USER NO SHOW";
  *   
  *   @return :List<SessionDTO> list
  *   @param : HttpServletRequest request
@@ -151,7 +152,7 @@ public List<SessionDTO> getSessionDetailsUsingUserId(int uId, String status){
  *   		  
  *
  ***************************************************************************************************/
-public List<SessionDTO> getSessionDetails(int aId, String status1, String status2,String status3,String status4,String status5){
+public List<SessionDTO> getSessionDetails(int aId, String status1, String status2,String status3,String status4,String status5,String status6){
 	
 	BasicConfigurator.configure();
 	logger.info("Entered setSessionDetails method of AdvisorMyAccountRequestViewDetailsDAO");
@@ -159,7 +160,7 @@ public List<SessionDTO> getSessionDetails(int aId, String status1, String status
 	if( aId != 0 ){	
 		try {
 			conn =Util.connect();
-			String query ="SELECT * FROM session_table WHERE ADVISOR_ID=? AND STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ?";
+			String query ="SELECT * FROM session_table WHERE ADVISOR_ID=? AND STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS=?";
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, aId);
 			pstmt.setString(2, status1);
@@ -167,6 +168,7 @@ public List<SessionDTO> getSessionDetails(int aId, String status1, String status
 			pstmt.setString(4, status3);
 			pstmt.setString(5, status4);
 			pstmt.setString(6, status5);
+			pstmt.setString(7, status6);
 			ResultSet results = pstmt.executeQuery();
 			while(results.next()){
 				SessionDTO session = new SessionDTO();
@@ -208,7 +210,7 @@ public List<SessionDTO> getSessionDetails(int aId, String status1, String status
 *   		  
 *
 ***************************************************************************************************/
-public List<SessionDTO> getSessionDetailsUsingUserId(int uId, String status1, String status2,String status3,String status4,String status5){
+public List<SessionDTO> getSessionDetailsUsingUserId(int uId, String status1, String status2,String status3,String status4,String status5,String status6){
 
 BasicConfigurator.configure();
 logger.info("Entered setSessionDetails method of AdvisorMyAccountRequestViewDetailsDAO");
@@ -216,7 +218,7 @@ java.util.List<SessionDTO> list = new ArrayList<SessionDTO>();
 if( uId != 0 ){	
 	try {
 		conn =Util.connect();
-		String query ="SELECT * FROM session_table WHERE USER_ID=? AND STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ?";
+		String query ="SELECT * FROM session_table WHERE USER_ID=? AND STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS = ? OR STATUS= ?";
 		PreparedStatement pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, uId);
 		pstmt.setString(2, status1);
@@ -224,6 +226,7 @@ if( uId != 0 ){
 		pstmt.setString(4, status3);
 		pstmt.setString(5, status4);
 		pstmt.setString(6, status5);
+		pstmt.setString(7, status6);
 		ResultSet results = pstmt.executeQuery();
 		while(results.next()){
 			SessionDTO session = new SessionDTO();

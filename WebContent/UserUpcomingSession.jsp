@@ -18,6 +18,7 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+ 
 
     <!-- MetisMenu CSS -->
     <link href="assets/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -94,6 +95,7 @@
 							   			<c:param name="rId" value="${request.getRequestId()}"/>
 							</c:url>
 			                <a class="btn btn-primary" href="${myURL}">View Details <i class="fa fa-angle-right"></i></a>
+			              	<a class="btn btn-primary" onclick="div_show()" href="">Recommend and Review the advisor <i class="fa fa-angle-right"></i></a>			                
 			            </div>
 			            <div class="col-md-4">
 			                <h3>Time Left For Session</h3>
@@ -116,23 +118,60 @@
 			        </div>
 			        <hr>
 	        		<!-- /.row -->
+	        		<div id="forgot_password" style="margin-top:50px;" class="collapse mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                 				 <div class="panel panel-info">
+						
+	                        <div class="panel-body" >
+	                            <form id="forgot_password_form" class="form-horizontal" role="form" action="ForgotPasswordController" method="post">
+	                                
+	                                 <div class="panel-heading">
+			                            <div class="panel-title" style="font-size:26px">Forgot Password?
+			                           		 <img alt="" id="close" onclick="div_hide()" src="assets/img/close.png" style="float: right; ">
+		                            	</div>
+                      					</div>
+                      					<hr>
+	                                <div class="form-group">
+	                                    <label for="icode" class="col-md-3 control-label">Username</label>
+	                                     <div class="col-md-9">
+											  <input type="text" name="username" class="form-control" placeholder="Enter your UserName">
+										 </div>
+	                                </div>
+	                                	
+	                                <c:if test="${isInvalidUsername}">
+	                                <c:out value="Invalid Username"></c:out>
+	                                </c:if>
+	                                				
+	                                <div class="form-group">
+	                                    <!-- Button -->                                        
+	                                    <div class="col-md-offset-3 col-md-9">
+	                                        <button id="btn" type="Submit" class="btn btn-info">Submit</button>
+											<!--<button id="btn" type="submit"  class="btn btn-info">Cancel</button>	-->
+	                                    </div>
+	                                </div>
+	                            </form>
+	                         </div>
+                 				 </div> 
+      					 </div>
 				</c:forEach>
 			</c:forEach>
+ 
 		</c:when>
 		<c:otherwise>
 			<c:out value="YOU HAVE NO UPCOMING SESSIONS"></c:out>
 		</c:otherwise>
 		</c:choose>
-		
+					
             
         </div>
         <!-- /#page-wrapper -->
-
+        
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
     <script src="assets/js/jquery-1.11.0.js"></script>
+   
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="assets/js/bootstrap.min.js"></script>
@@ -155,7 +194,11 @@
     $("[data-toggle=popover]")
         .popover()
     </script>
-
+    <script type="text/javascript">
+		function div_show() {
+			document.getElementById('forgot_password').style.display = "block";
+		}
+	</script>
 </body>
 
 </html>

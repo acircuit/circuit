@@ -69,8 +69,9 @@ public class UserLoginController extends HttpServlet {
 							ResultSet results = dao.CheckLoginDetails(username, securedPassword);
 							if(results.first()){
 								int uId = results.getInt("USER_ID");
+								String userName = results.getString("FULL_NAME");
 								HttpSession session=request.getSession();  
-						        session.setAttribute("username",username); 
+						        session.setAttribute("username",userName); 
 						        session.setAttribute("userId",uId); 
 						        Cookie loginCookie = new Cookie("username", username);
 						        loginCookie.setMaxAge(60*60);
