@@ -7,6 +7,20 @@ public class SessionDTO {
 	int sessionId;
 	int requestId;
 	int advisorId;
+	int ratings;
+	String reviewMessage;
+	public int getRatings() {
+		return ratings;
+	}
+	public void setRatings(int ratings) {
+		this.ratings = ratings;
+	}
+	public String getReviewMessage() {
+		return reviewMessage;
+	}
+	public void setReviewMessage(String reviewMessage) {
+		this.reviewMessage = reviewMessage;
+	}
 	public int getSessionId() {
 		return sessionId;
 	}

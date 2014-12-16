@@ -86,7 +86,9 @@
 			        <div class="row" style="background-color:#f8f8f8">
 			  			<input type="hidden" name="rId" value="request.getRequestId()">
 			            <div class="col-md-8">
-			                <h3><c:out value="${advisor.getName()}"/></h3>
+			            	<c:if test="${advisor.getAdvisorId() == request.getAdvisorId()}">
+			                	<h3><c:out value="${advisor.getName()}"/></h3>
+			                </c:if>
 			                <p>Type : <b><c:out value="${request.getService()}"/></b>
 			                </p>
 			                <p><c:out value="${request.getQuery()}"/></p>

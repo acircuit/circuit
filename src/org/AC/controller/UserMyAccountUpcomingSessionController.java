@@ -43,6 +43,7 @@ public class UserMyAccountUpcomingSessionController extends HttpServlet {
 		int requestId = 0;
 		String userName= "";
 		Timestamp acceptedDate = null;
+		int sessionId = 0;
 		List<Integer> requestIds = new ArrayList<Integer>();
 		List<Integer> advisorIds = new ArrayList<Integer>();
 		try{
@@ -65,6 +66,7 @@ public class UserMyAccountUpcomingSessionController extends HttpServlet {
 				advisorIds.add(sessionDTO.getAdvisorId());
 				//userId = sessionDTO.getUserId();
 				requestIds.add(sessionDTO.getRequestId());
+				sessionId = sessionDTO.getSessionId();
 			}
 			
 			///Fetching Advisor Name from the advisordetails table
@@ -102,6 +104,8 @@ public class UserMyAccountUpcomingSessionController extends HttpServlet {
 			if(list.size() > 0  && list1.size() > 0 && list2.size() > 0) {
 				request.setAttribute("requests", list1);
 				request.setAttribute("advisordetails", list2);
+				request.setAttribute("sId", sessionId);
+				
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UserUpcomingSession.jsp");
 		        rd.forward(request, response);
 			}else{

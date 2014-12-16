@@ -62,6 +62,9 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="Admin_Review_Email.jsp"><i class="fa fa-edit fa-fw"></i> Review & Recommendation</a>
+                        </li>
+                        <li>
                             <a href="Review.jsp"><i class="fa fa-edit fa-fw"></i> Message</a>
                         </li>
                          <li>

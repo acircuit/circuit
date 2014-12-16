@@ -212,6 +212,12 @@
 									<c:if test="${sessionDetail.size() > 0}">
 										<c:forEach var="session" items="${sessionDetail}">
 											<h3>Session Details</h3>
+											<div class="form-group">
+														<label for="icode" class="col-md-3 control-label">Session ID</label>
+													<div class="col-md-9">
+														<p class="form-control"><b><c:out value="${session.getSessionId()}"/></b></p>
+													</div>
+												</div>
 												<div class="form-group">
 														<label for="icode" class="col-md-3 control-label">Session Plan</label>
 													<div class="col-md-9">

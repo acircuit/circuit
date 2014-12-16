@@ -77,8 +77,8 @@
             <!-- Sidebar Column -->
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="#" class="list-group-item" id="advisor_faq">Advisor</a>
-                    <a href="#" class="list-group-item" id="customer_faq">Customer</a>
+                    <a href="#" style="font-family:'custom_bold' !important;font-size: 20px" class="list-group-item" id="advisor_faq"><b>For Advisors</b></a>
+                    <a href="#" style="font-family:'custom_bold' !important;font-size: 20px" class="list-group-item" id="customer_faq"><b>For Customers</b></a>
                 </div>
             </div>
             <!-- Content Column -->

@@ -38,6 +38,7 @@
     <%
 		List<AdvisorProfileDTO> advisordetails = (List<AdvisorProfileDTO>)request.getAttribute("advisordetails");
 		List<UserRequestDTO> userRequestDetails = (List<UserRequestDTO>)request.getAttribute("requests");
+		int sessionId = (Integer)request.getAttribute("sId");
 		pageContext.setAttribute("userRequestDetails", userRequestDetails);
 		pageContext.setAttribute("advisordetails", advisordetails);
     %>
@@ -83,6 +84,7 @@
 		  <c:when test="${advisordetails.size() > 0 && userRequestDetails.size() > 0}">
 		      <c:forEach items="${advisordetails}" var="advisor">
 				<c:forEach items="${userRequestDetails}" var="request">
+					<c:if test="${advisor.getAdvisorId() == request.getAdvisorId()}">			
 					<!-- Blog Post Row -->
 			        <div class="row" style="background-color:#f8f8f8">
 			  			<input type="hidden" name="rId" value="request.getRequestId()">
@@ -95,7 +97,9 @@
 							   			<c:param name="rId" value="${request.getRequestId()}"/>
 							</c:url>
 			                <a class="btn btn-primary" href="${myURL}">View Details <i class="fa fa-angle-right"></i></a>
-			              	<a class="btn btn-primary" onclick="div_show()" href="">Recommend and Review the advisor <i class="fa fa-angle-right"></i></a>			                
+			                <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
+			              		<a class="btn btn-primary" onclick="div_show()" href="">Review the advisor <i class="fa fa-angle-right"></i></a>
+			              	</c:if>			                
 			            </div>
 			            <div class="col-md-4">
 			                <h3>Time Left For Session</h3>
@@ -115,43 +119,50 @@
 			                    </li>
 			                </ul>
            				 </div>
+           				 <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
+					 	     <div class="col-md-8">
+	                            <label for="icode" class="col-md-3 control-label">Recommend :</label>
+	                            <a onclick="recommend()"><img alt="" src="assets/img/Icon_Advisor.png" width="30px" height="30px"></a>
+	                        </div>
+                        </c:if>
+              			<div style="font: bold;" class="col-md-8" id = "recommendation">
+                        </div>
 			        </div>
 			        <hr>
 	        		<!-- /.row -->
-	        		<div id="forgot_password" style="margin-top:50px;" class="collapse mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                 				 <div class="panel panel-info">
-						
-	                        <div class="panel-body" >
-	                            <form id="forgot_password_form" class="form-horizontal" role="form" action="ForgotPasswordController" method="post">
-	                                
+	        		<div id="review" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+               		   <div class="panel panel-info">
+							<div class="panel-body" >
+                                <form action="">
 	                                 <div class="panel-heading">
-			                            <div class="panel-title" style="font-size:26px">Forgot Password?
-			                           		 <img alt="" id="close" onclick="div_hide()" src="assets/img/close.png" style="float: right; ">
+			                            <div class="panel-title" style="font-size:26px">
+			                            	 <b>Review Your Advisor</b>
+			                            	<img alt="" id="close" onclick="div_hide()" src="assets/img/close.png" style="float: right; ">
 		                            	</div>
-                      					</div>
+                    				</div>
                       					<hr>
-	                                <div class="form-group">
-	                                    <label for="icode" class="col-md-3 control-label">Username</label>
-	                                     <div class="col-md-9">
-											  <input type="text" name="username" class="form-control" placeholder="Enter your UserName">
-										 </div>
-	                                </div>
-	                                	
-	                                <c:if test="${isInvalidUsername}">
-	                                <c:out value="Invalid Username"></c:out>
-	                                </c:if>
-	                                				
+	                      			 <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
+		                                <div class="form-group">
+		                                    <label for="icode" class="col-md-3 control-label">Review Message</label>
+		                                     <div class="col-md-9">
+		                                     		<textarea rows="3" id="reviewmessage" name="reviewmessage" class="form-control"></textarea>
+											 </div>
+		                                </div>             	
+		                                <div style="font: bold;" class="col-md-8" id = "reviews">
+	                        			</div>
+		                              </c:if> 				
 	                                <div class="form-group">
 	                                    <!-- Button -->                                        
 	                                    <div class="col-md-offset-3 col-md-9">
-	                                        <button id="btn" type="Submit" class="btn btn-info">Submit</button>
+	                                        <button id="btn" type="Submit" onclick="review()" class="btn btn-info">Submit</button>
 											<!--<button id="btn" type="submit"  class="btn btn-info">Cancel</button>	-->
 	                                    </div>
 	                                </div>
-	                            </form>
+	                             </form>
 	                         </div>
-                 				 </div> 
+             			</div> 
       					 </div>
+     				</c:if>
 				</c:forEach>
 			</c:forEach>
  
@@ -196,7 +207,41 @@
     </script>
     <script type="text/javascript">
 		function div_show() {
-			document.getElementById('forgot_password').style.display = "block";
+			document.getElementById('review').style.display = "block";
+		}
+		function div_hide(){
+			document.getElementById('review').style.display = "none";
+		}
+		function recommend(){
+			 $.ajax({
+	                url : 'Recommendation', // Your Servlet mapping or JSP(not suggested)
+	                data : {"sId" :<%=sessionId%>},
+	                type : 'POST',
+	                dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+	                success : function(response) {
+	                    $('#recommendation').html(response); // create an empty div in your page with some id
+	                },
+	                error : function(request, textStatus, errorThrown) {
+	                    alert(errorThrown);
+	                }
+	            }); 
+		}
+		function review(){
+			$.ajax({
+                url : 'Recommendation', // Your Servlet mapping or JSP(not suggested)
+                data : {"sId" :<%=sessionId%>,"review":"true","reviewmessage": $("#reviewmessage").val()},
+                type : 'POST',
+                dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+                success : function(response) {
+                	alert(response);
+                    $('#reviews').html(response); // create an empty div in your page with some id
+                },
+                error : function(request, textStatus, errorThrown) {
+                    alert(errorThrown);
+                }
+            }); 
+			
+			
 		}
 	</script>
 </body>

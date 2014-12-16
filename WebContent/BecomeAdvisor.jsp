@@ -76,32 +76,32 @@
 			
 			<div class="col-lg-7" style="margin-left:21%;">
 			<!--inside main-->
-			<p style="color:#555;font-size:20px;padding-top:4%;padding-bottom:4%">We can understand the hardships you must've faced in getting where you are today. The hard work you put in everyday
+			<p style="color:#555;font-size:20px;padding-top:4%;padding-bottom:4%";>We can understand the hardships you must've faced in getting where you are today. The hard work you put in everyday
 			and long hours in waiting for the right break. While it's true that nothing can replace the arduous journey to the top,
 			at Advisor Circuit we're trying to lend a helping hand to make it a bit easier for the rest.</p>
 			
 			<h2 style="color:#555;font-size:38px;padding-bottom:4%" class="centered">So if you're successful in your field, take out the</br>time to guide others & get paid for it!</h2>
 			
-			<div class="col-lg-9 col-lg-offset-3 centered">
-				<div class="col-lg-3">
+			<div class="col-lg-8 col-lg-offset-3 centered">
+				<div class="col-lg-4">
 					<img  src="assets/img/Icon_Fees.png" width="55" alt="">
 					<h4 style="color:#555;font-size:16px !important">Decide your own consulation price</h4>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<img  src="assets/img/Icon_Time.png" width="55" alt="">
 					<h4 style="color:#555;font-size:16px !important">Never get tired! Choose your own work timings</h4>
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<img  src="assets/img/Icon_Mentor.png" width="55" alt="">
 					<h4 style="color:#555;font-size:16px !important">Contribute by mentoring people in need</h4>
 				</div>
 			</div>
 			
 			<h2 class="centered" style="color:#555;font-size:70px;padding-top:25%">GO AHEAD!</h2>
-			<p class="centered" style="color:#555;font-size:55px;">BECOME AN ADVISOR TODAY.</p>
+			<p class="centered" style="color:#555;font-size:50px;"><b>BECOME AN ADVISOR TODAY.</b></p>
 			<div class="col-lg-9 col-lg-offset-2 centered">
 				<img  src="assets/img/Icon_Advisor.png" width="55" alt="">
-				<h2 class="centered" style="color:#555;font-size:35px;">Join Us!</h2>
+				<h2 class="centered" style="color:#555`;font-size:35px;">Join Us!</h2>
 			</div>
 			
 			<!--ends inside-->

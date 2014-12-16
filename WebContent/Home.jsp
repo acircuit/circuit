@@ -74,7 +74,7 @@
 			<div class="row">
 				<div class="col-md-12 centered" style="margin-top:-1%">
 					<h2 style="color:#f8f8f8;font-size:44px !important">Have questions about your career?</br>Take charge today!</b></h2>
-					<h4 style="color:#f8f8f8;font-size:23px">Connect to professionals who have actually been in the field.</h4>
+					<h4 style="color:#f8f8f8;font-size:23px"><b>Connect to professionals who have actually been in the field.</b></h4>
 				</div>
 				
 				<div class="col-md-8 centered" style="margin-left:29%;padding-top:3%;width:61%">
