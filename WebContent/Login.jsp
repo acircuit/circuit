@@ -109,7 +109,7 @@
                                 <div class="input-group">
                                       <div >
                                         <label>
-                                          <a style="float: left" onclick="div_show()">Forgot Password ?</a> 
+                                        	<a style="float: left" data-toggle="modal" data-target="#datepay">Forgot Password ?</a>
                                         </label>
                                       </div>
                                 </div>
@@ -227,40 +227,47 @@
                          </div>
                      </div>  
                      </div>
-					<div id="forgot_password" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-                 				 <div class="panel panel-info">
-						
-	                        <div class="panel-body" >
-	                            <form id="forgot_password_form" class="form-horizontal" role="form" action="ForgotPasswordController" method="post">
-	                                
-	                                 <div class="panel-heading">
-			                            <div class="panel-title" style="font-size:26px">Forgot Password?
-			                           		 <img alt="" id="close" onclick="div_hide()" src="assets/img/close.png" style="float: right; ">
-		                            	</div>
-                      					</div>
-                      					<hr>
-	                                <div class="form-group">
-	                                    <label for="icode" class="col-md-3 control-label">Username</label>
-	                                     <div class="col-md-9">
-											  <input type="text" name="username" class="form-control" placeholder="Enter your UserName">
+                     <div class="modal fade" id="datepay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h4 class="modal-title" id="myModalLabel">Forgot Password?</h4>
+								</div>
+								<div class="modal-body">
+									<form id="forgot_password_form" class="form-horizontal" role="form" onsubmit="GetForgotPasswordAction()" method="post">
+		                                <div class="form-group">
+		                                    <label for="icode" class="col-md-3 control-label">Email</label>
+		                                     <div class="col-md-9">
+												  <input type="text" name="email" class="form-control" placeholder="Enter your email">
+											 </div>
+		                                </div>
+		                                  <div class="form-group">
+		                                    <label for="icode" class="col-md-3 control-label">Type</label>
+		                                     <div class="col-md-9">
+												  <select id = "forgotpasswordtype" name="type" >
+												  	<option value="Advisor">Advisor</option>
+												  	<option value="User">User</option>
+												  </select>
+											 </div>
 										 </div>
-	                                </div>
-	                                	
-	                                <c:if test="${isInvalidUsername}">
-	                                <c:out value="Invalid Username"></c:out>
-	                                </c:if>
-	                                				
-	                                <div class="form-group">
-	                                    <!-- Button -->                                        
-	                                    <div class="col-md-offset-3 col-md-9">
-	                                        <button id="btn" type="Submit" class="btn btn-info">Submit</button>
-											<!--<button id="btn" type="submit"  class="btn btn-info">Cancel</button>	-->
-	                                    </div>
-	                                </div>
-	                            </form>
-	                         </div>
-                 				 </div> 
-      					 </div> 
+		                                <c:if test="${isInvalidUsername}">
+		                                <c:out value="Invalid Username"></c:out>
+		                                </c:if>
+		                                				
+		                                <div class="form-group">
+		                                    <!-- Button -->                                        
+		                                    <div class="col-md-offset-3 col-md-9">
+		                                        <button id="btn" type="Submit" class="btn btn-info">Submit</button>
+												<!--<button id="btn" type="submit"  class="btn btn-info">Cancel</button>	-->
+		                                    </div>
+		                                </div>
+		                            </form>
+								</div>
+							</div>
+                     	</div>
+                   	</div>
+					
 					</div>  
 
                     </div>  
@@ -291,8 +298,18 @@
 			document.getElementById("loginform").action = "http://localhost:7080/Tomact_7/UserLoginController?aId=<%=advisorId%>&loginFromAdvisorProfile=true";
 		}	else{
 			document.getElementById("loginform").action = "http://localhost:7080/Tomact_7/UserLoginController";
+
 		}
 	}
+ }
+ function GetForgotPasswordAction(){
+	 alert("Hi");
+	var type =document.getElementById('forgotpasswordtype').value;
+	if(type == "Advisor"){
+		document.getElementById("forgot_password_form").action = "http://localhost:7080/Tomact_7/ForgotPasswordController";
+	}else{
+		document.getElementById("forgot_password_form").action = "http://localhost:7080/Tomact_7/UserForgotPasswordController";
+	}	 
  }
  </script>
 </body>

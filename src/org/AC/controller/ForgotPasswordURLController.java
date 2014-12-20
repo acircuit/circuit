@@ -45,8 +45,7 @@ public class ForgotPasswordURLController extends HttpServlet {
 				Date date = c.getTime();
 				int comparision = new Date().compareTo(date); 
 				if(comparision <= 0){
-					request.getSession().setAttribute("advisorId", aId);
-					response.sendRedirect("NewPassword.jsp");
+					response.sendRedirect("NewPassword.jsp?aId="+aId);
 				}
 				else{
 					response.sendRedirect("LinkDeactivated.jsp");

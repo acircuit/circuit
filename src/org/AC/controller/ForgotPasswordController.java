@@ -46,9 +46,7 @@ public class ForgotPasswordController extends HttpServlet {
 		logger.info("Entered doPost method of ForgotPasswordController");
 		int advisorId = 0;
 		String email = "";
-		String userName = request.getParameter("username");
-		String password = "";
-		String hashPassword = "";
+		String userName = request.getParameter("email");
 		Boolean isInvalidUsername = false;
 		Boolean isInsertComplete =false;
 		try {
@@ -59,16 +57,8 @@ public class ForgotPasswordController extends HttpServlet {
 						advisorId = results.getInt("ADVISOR_ID");
 						email = results.getString("EMAIL"); 
 						if(advisorId != 0 && !email.isEmpty()){
-							PasswordGenerator pass = new PasswordGenerator();
-							password = pass.generatePassword(userName,advisorId);
-							if(!password.isEmpty() && !password.equals("")){
-								PasswordHashing securedPassword = new PasswordHashing();
-								hashPassword = securedPassword.doHash(password);
-							}
-							if(!hashPassword.isEmpty() && !hashPassword.equals("")){
-								ForgotPasswordDAO dao1 = new ForgotPasswordDAO();
-								isInsertComplete = dao1.setForgotPasswordDetails(advisorId,email,userName,hashPassword);
-							}
+							ForgotPasswordDAO dao1 = new ForgotPasswordDAO();
+							isInsertComplete = dao1.setForgotPasswordDetails(advisorId,email);
 							if(isInsertComplete){
 								Mail mail = new Mail();
 								Boolean isMailSent =  mail.SendMailToAdvisor(email,advisorId);
@@ -86,12 +76,6 @@ public class ForgotPasswordController extends HttpServlet {
 			}
 			logger.info("Exit doPost method of ForgotPasswordController");
 		} catch (SQLException e) {
-			logger.error("doPost method of ForgotPasswordController threw error:"+e.getMessage());
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			logger.error("doPost method of ForgotPasswordController threw error:"+e.getMessage());
-			e.printStackTrace();
-		} catch (NoSuchProviderException e) {
 			logger.error("doPost method of ForgotPasswordController threw error:"+e.getMessage());
 			e.printStackTrace();
 		}

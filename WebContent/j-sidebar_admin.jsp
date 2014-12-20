@@ -70,6 +70,9 @@
                          <li>
                             <a href="Review.jsp"><i class="fa fa-table fa-fw"></i> Receipts & Payments</a>
                         </li>
+                        <li>
+                            <a href="Admin_UserAdminMessages_Email.jsp"><i class="fa fa-table fa-fw"></i> Advisor & User Messages With File Uploads</a>
+                        </li>
                         
                     </ul>
                 </div>

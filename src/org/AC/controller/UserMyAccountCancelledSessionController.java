@@ -117,15 +117,10 @@ public class UserMyAccountCancelledSessionController extends HttpServlet {
 				AdvisorMyAccountSessionDAO profile = new AdvisorMyAccountSessionDAO();
 				advisorDetails  = profile.getAdvisorDetailsUsingAdvisorId(advisorIds);
 			}
-			if(list1.size() > 0  && advisorDetails.size() > 0) {
 				request.setAttribute("requests", list1);
 				request.setAttribute("advisorDetails", advisorDetails);
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UserCancelledSessions.jsp");
 		        rd.forward(request, response);
-			}else{
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UserCancelledSessions.jsp");
-		        rd.forward(request, response);
-			}
 			
 		}
 		logger.info("Entered doGet method of UserMyAccountCancelledSessionController");

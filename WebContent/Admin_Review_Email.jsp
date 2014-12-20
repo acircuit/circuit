@@ -34,7 +34,7 @@
 
     <!-- Fonts from Google Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-	<% 		
+		<% 		
 			Boolean isRecommended =(Boolean)request.getAttribute("Recommendation");
 			String ReviewMessage =(String)request.getAttribute("ReviewMessage");
 			String sId =(String)request.getAttribute("sId");
@@ -46,7 +46,7 @@
               <div class="panel panel-info">
   				
                    <div class="panel-body" >
-                   		<c:choose>
+		                      <c:choose>
                    			<c:when test="${ReviewMessage == null}">
 		                       <form id="Review_form" class="form-horizontal" role="form" action="AdminMyAccountReviewController" method="post">
 		                           
@@ -99,7 +99,7 @@
          </div> 
 </body>
  <script src="assets/js/jquery-1.11.0.js"></script>
-<script type="text/javascript">
+ <script type="text/javascript">
 function approvereview(){
 	$.ajax({
 	    url : 'AdminMyAccountReviewController', // Your Servlet mapping or JSP(not suggested)

@@ -35,7 +35,7 @@ public class Mail {
 
 	      // Sender's email ID needs to be mentioned
 	      String from = "udaykhatry91@gmail.com";
-	      String url = "http://localhost:7080/AC/ForgotPassword?cgid="+advisorId;
+	      String url = "http://localhost:7080/Tomact_7/ForgotPasswordAdvisor?cgid="+advisorId;
 
 	      // Assuming you are sending email from localhost
 	      String host = "localhost";
@@ -107,7 +107,7 @@ public class Mail {
 
       // Sender's email ID needs to be mentioned
       String from = "udaykhatry91@gmail.com";
-      String url = "http://localhost:7080/AC/ForgotPasswordUser?cgid="+userId;
+      String url = "http://localhost:7080/Tomact_7/ForgotPasswordUser?cgid="+userId;
 
       // Assuming you are sending email from localhost
       String host = "localhost";

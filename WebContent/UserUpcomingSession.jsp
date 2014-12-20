@@ -98,7 +98,7 @@
 							</c:url>
 			                <a class="btn btn-primary" href="${myURL}">View Details <i class="fa fa-angle-right"></i></a>
 			                <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
-			              		<a class="btn btn-primary" onclick="div_show()" href="">Review the advisor <i class="fa fa-angle-right"></i></a>
+			                <a class="btn btn-primary" data-toggle="modal" data-target="#datepay">Review & Rate the advisor <i class="fa fa-angle-right"></i></a>
 			              	</c:if>			                
 			            </div>
 			            <div class="col-md-4">
@@ -119,49 +119,48 @@
 			                    </li>
 			                </ul>
            				 </div>
-           				 <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
-					 	     <div class="col-md-8">
-	                            <label for="icode" class="col-md-3 control-label">Recommend :</label>
-	                            <a onclick="recommend()"><img alt="" src="assets/img/Icon_Advisor.png" width="30px" height="30px"></a>
-	                        </div>
-                        </c:if>
-              			<div style="font: bold;" class="col-md-8" id = "recommendation">
-                        </div>
 			        </div>
 			        <hr>
-	        		<!-- /.row -->
-	        		<div id="review" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-               		   <div class="panel panel-info">
-							<div class="panel-body" >
-                                <form action="">
-	                                 <div class="panel-heading">
-			                            <div class="panel-title" style="font-size:26px">
-			                            	 <b>Review Your Advisor</b>
-			                            	<img alt="" id="close" onclick="div_hide()" src="assets/img/close.png" style="float: right; ">
-		                            	</div>
-                    				</div>
-                      					<hr>
-	                      			 <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
-		                                <div class="form-group">
-		                                    <label for="icode" class="col-md-3 control-label">Review Message</label>
-		                                     <div class="col-md-9">
-		                                     		<textarea rows="3" id="reviewmessage" name="reviewmessage" class="form-control"></textarea>
-											 </div>
-		                                </div>             	
-		                                <div style="font: bold;" class="col-md-8" id = "reviews">
-	                        			</div>
-		                              </c:if> 				
-	                                <div class="form-group">
-	                                    <!-- Button -->                                        
-	                                    <div class="col-md-offset-3 col-md-9">
-	                                        <button id="btn" type="Submit" onclick="review()" class="btn btn-info">Submit</button>
-											<!--<button id="btn" type="submit"  class="btn btn-info">Cancel</button>	-->
-	                                    </div>
-	                                </div>
-	                             </form>
-	                         </div>
-             			</div> 
-      					 </div>
+	        		<div class="modal fade" id="datepay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									<h4 class="modal-title" id="myModalLabel">Review Your Advisor</h4>
+								</div>
+								<div class="modal-body">
+										<div class="panel panel-info">
+											<div class="panel-body" >
+				                                <form action="" >
+					                                <div class="form-group">
+					                                    <label for="icode" class="col-md-3 control-label">Review Message</label>
+					                                     <div class="col-md-9">
+					                                     		<textarea rows="3" id="reviewmessage" name="reviewmessage" class="form-control"></textarea>
+														 </div>
+					                                </div>
+                                       				 <c:if test="${request.getDays() > 0 && request.getHours() > 0 && request.getMinutes() > 0 }">
+												 	     <div class="col-md-8">
+								                            <label for="icode" class="col-md-3 control-label">Recommend :</label>
+								                            <a onclick="recommend()"><img alt="" src="assets/img/Icon_Advisor.png" width="30px" height="30px"></a>
+								                        </div>
+						                        	</c:if>             	
+					                                <div class="form-group">
+					                                    <!-- Button -->                                        
+					                                    <div class="col-md-offset-3 col-md-9" style="margin-top: 20px">
+					                                        <button id="btn" type="button" onclick="review()" class="btn btn-info">Submit</button>
+															<!--<button id="btn" type="button"  class="btn btn-info">Cancel</button>	-->
+					                                    </div>
+					                                </div>
+					     	                        	<div style="font: bold;" class="col-md-8" id ="error">
+					                        			</div>      
+					                             </form>
+													
+					                         </div>
+             							</div> 
+								</div>
+							</div>
+						</div>
+					</div>
      				</c:if>
 				</c:forEach>
 			</c:forEach>
@@ -207,7 +206,7 @@
     </script>
     <script type="text/javascript">
 		function div_show() {
-			document.getElementById('review').style.display = "block";
+			$(review).show();
 		}
 		function div_hide(){
 			document.getElementById('review').style.display = "none";
@@ -219,7 +218,7 @@
 	                type : 'POST',
 	                dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
 	                success : function(response) {
-	                    $('#recommendation').html(response); // create an empty div in your page with some id
+	                    $('#error').html(response); // create an empty div in your page with some id
 	                },
 	                error : function(request, textStatus, errorThrown) {
 	                    alert(errorThrown);
@@ -227,19 +226,22 @@
 	            }); 
 		}
 		function review(){
+
 			$.ajax({
                 url : 'Recommendation', // Your Servlet mapping or JSP(not suggested)
                 data : {"sId" :<%=sessionId%>,"review":"true","reviewmessage": $("#reviewmessage").val()},
                 type : 'POST',
                 dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
                 success : function(response) {
-                	alert(response);
-                    $('#reviews').html(response); // create an empty div in your page with some id
+                    $('#error').html(response);
+                   					// create an empty div in your page with some id
                 },
                 error : function(request, textStatus, errorThrown) {
                     alert(errorThrown);
+                    
                 }
             }); 
+			
 			
 			
 		}

@@ -23,26 +23,31 @@ public class ForgotPasswordDAO {
 	private static final Logger logger = Logger.getLogger(ForgotPasswordDAO.class);
 	
 	//This function  will put the Book a Session form details in the "userrequest" table
-	public Boolean  setForgotPasswordDetails(int  advisorId,String email, String userName,String hashPassword) { 
+	public Boolean  setForgotPasswordDetails(int  advisorId,String email) { 
 		
 		BasicConfigurator.configure();
 		logger.info("Entered setForgotPasswordDetails method of ForgotPasswordDAO");
 		Boolean isInsertComplete = false;
 		try {
 			conn =Util.connect();
-			String query = "INSERT INTO forgotpassword_admin(ADVISOR_ID,USERNAME,TIME,PASSWORD,EMAIL)" + "VALUES(?,?,?,?,?)";
+			String query = "INSERT INTO forgotpassword_admin(ADVISOR_ID,TIME,EMAIL)" + "VALUES(?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1,advisorId );
-			pstmt.setString(2, userName);
-			pstmt.setTimestamp(3, new java.sql.Timestamp(new Date().getTime()));
-			pstmt.setString(4, hashPassword);
-			pstmt.setString(5, email);
+			pstmt.setTimestamp(2, new java.sql.Timestamp(new Date().getTime()));
+			pstmt.setString(3, email);
 			int result = pstmt.executeUpdate(); 
 			if(result >0) {
+				conn.commit();
 				isInsertComplete = true;
 			}
 		logger.info("Exit setForgotPasswordDetails method of ForgotPasswordDAO");
 		}catch(Exception e){
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				logger.error("setForgotPasswordDetails method of ForgotPasswordDAO threw error:"+e1.getMessage());
+				e1.printStackTrace();
+			}
 			logger.error("setForgotPasswordDetails method of ForgotPasswordDAO threw error:"+e.getMessage());
 			e.printStackTrace();
 		}
@@ -54,7 +59,7 @@ public class ForgotPasswordDAO {
 		BasicConfigurator.configure();
 		logger.info("Entered getForgotPasswordDetails method of ForgotPasswordDAO");
 		conn =Util.connect();
-		String query ="SELECT ADVISOR_ID,EMAIL FROM advisordetails WHERE USERNAME = ?";
+		String query ="SELECT ADVISOR_ID,EMAIL FROM advisordetails WHERE EMAIL = ?";
 		PreparedStatement pstmt;
 		ResultSet results = null;
 			try {
@@ -113,10 +118,17 @@ public class ForgotPasswordDAO {
 			    pstmt.setString(2, advisorId);
 			    int result = pstmt.executeUpdate(); 
 				if(result >0) {
+					conn.commit();
 					isInsertComplete = true;
 				}
 			}
 		}catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				logger.error("updatePassword method of ForgotPasswordDAO threw error:"+e1.getMessage());
+				e1.printStackTrace();
+			}
 			logger.error("updatePassword method of ForgotPasswordDAO threw error:"+e.getMessage());
 			e.printStackTrace();
 		}catch (Exception e) {

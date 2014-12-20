@@ -33,7 +33,7 @@ public class UserForgotPasswordURLController extends HttpServlet {
 		logger.info("Entered doGet method of UserForgotPasswordURLController");
 		String uId = request.getParameter("cgid");
 		try{
-			if(!uId.isEmpty() && !("").equals(uId)){
+			if( uId != null && !uId.isEmpty() && !("").equals(uId)){
 				UserForgotPasswordDAO dao = new UserForgotPasswordDAO();
 				Timestamp time = dao.getUserTimestamp(uId);
 				//Adding 1 Day to the timestamp retrived from the database
@@ -43,14 +43,11 @@ public class UserForgotPasswordURLController extends HttpServlet {
 				Date date = c.getTime();
 				int comparision = new Date().compareTo(date); 
 				if(comparision <= 0){
-					request.getSession().setAttribute("userId", uId);
-					response.sendRedirect("NewPassword.jsp");
+					response.sendRedirect("NewPassword.jsp?uId=" +uId);
 				}
 				else{
 					response.sendRedirect("LinkDeactivated.jsp");
 				}
-			}else{
-				
 			}
 		}catch(Exception e){
 			logger.error("doGet method of UserForgotPasswordURLController threw error:"+e.getMessage());

@@ -75,11 +75,10 @@ public class AdvisorMyAccountUpcomingSessionViewDetailController extends HttpSer
 		String relImage = "";
 		String userName= "";
 		Timestamp acceptedDate = null;
+	    rId = (String) request.getParameter("rId");
 		try{
 	    advisorId = (int) request.getSession().getAttribute("advisorId"); 
-	    username = (String) request.getSession().getAttribute("username");
-	    rId = (String) request.getParameter("rId");
-	    
+	    username = (String) request.getSession().getAttribute("username");	    
 		}catch(Exception e){
 			response.sendRedirect("Error.jsp");
 		}

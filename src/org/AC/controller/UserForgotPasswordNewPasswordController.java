@@ -32,7 +32,7 @@ public class UserForgotPasswordNewPasswordController extends HttpServlet {
 		logger.info("Entered doPost method of UserForgotPasswordNewPasswordController");
 		String NewPassword = request.getParameter("NewPassword");
 		String ConfirmPassword = request.getParameter("ConfirmPassword");
-		String uId = (String) request.getSession().getAttribute("userId");	
+		String uId = (String) request.getParameter("id");	
 		String securedPassword = "";
 		Boolean isInsertComplete =false;
 		try {	

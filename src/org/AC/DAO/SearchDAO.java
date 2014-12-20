@@ -72,7 +72,7 @@ public class SearchDAO {
 				try {
 					conn.rollback();
 				} catch (SQLException e1) {
-					logger.error("checkKeyWord method of SearchDAO threw error:"+e.getMessage());
+					logger.error("checkKeyWord method of SearchDAO threw error:"+e1.getMessage());
 					e1.printStackTrace();
 				}
 				logger.error("checkKeyWord method of SearchDAO threw error:"+e.getMessage());

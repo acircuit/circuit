@@ -109,6 +109,8 @@ public class Recommendation extends HttpServlet {
 								ReviewAndRecommendationDAO messages = new ReviewAndRecommendationDAO();
 								isReviewCommit = message.UpdateReviewMessage(sId, reviewmessage);
 								if(isReviewCommit){
+									NewReviewAdminMail mail = new NewReviewAdminMail();
+									mail.SendMail(sId,reviewmessage);
 									reviews = "THANK YOU FOR YOUR REVIEW.PLEASE RECOMMEND THE ADVISOR";
 								}
 							}else{

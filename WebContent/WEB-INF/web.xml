@@ -4,13 +4,16 @@
   <welcome-file-list>
     <welcome-file>Home.jsp</welcome-file>
   </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
   <servlet>
     <servlet-name>AdvisorProfileServlet</servlet-name>
     <servlet-class>org.AC.controller.AdvisorProfileServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AdvisorProfileServlet</servlet-name>
-    <url-pattern>/Tomact_7/AdvisorProfilePage?aId=*</url-pattern>
+    <url-pattern>/Tomact_7/AdvisorProfilePage</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ForgotPasswordRedirectController</servlet-name>
@@ -26,7 +29,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdvisorMyAccountRequest</servlet-name>
-    <url-pattern>/Tomact_7/requests.jsp</url-pattern>
+    <url-pattern>/requests.jsp</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>UserMyAccountRequest</servlet-name>
@@ -34,7 +37,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UserMyAccountRequest</servlet-name>
-    <url-pattern>/Tomact_7/user_requests.jsp</url-pattern>
+    <url-pattern>/user_requests.jsp</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ForgotPasswordRedirectControllerUser</servlet-name>

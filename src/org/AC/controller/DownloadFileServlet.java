@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.AC.DAO.MyAccountRequestDAO;
+import org.AC.DAO.SessionMssagesDAO;
 
 /* *******************************CLASS SUMMARY****************************************************
 * 
@@ -41,15 +42,20 @@ public class DownloadFileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String rId = request.getParameter("rid");
-		String cvPath = "";
+		String id = request.getParameter("id");
+		String path = "";
 		if(rId != null){
 			MyAccountRequestDAO cv = new MyAccountRequestDAO();
-			cvPath = cv.getCvPath(rId);	
+			path = cv.getCvPath(rId);	
 		}
-		if(!("").equals(cvPath)){
+		if(id != null){
+			SessionMssagesDAO file = new SessionMssagesDAO();
+			path = file.getFilePath(id);	
+		}
+		if(!("").equals(path)){
 		// reads input file from an absolute path
        // String filePath = "E:/Test/Download/MYPIC.JPG";
-        File downloadFile = new File(cvPath);
+        File downloadFile = new File(path);
         FileInputStream inStream = new FileInputStream(downloadFile);
          
         // if you want to use a relative path to context root:
@@ -60,7 +66,7 @@ public class DownloadFileServlet extends HttpServlet {
         ServletContext context = getServletContext();
          
         // gets MIME type of the file
-        String mimeType = context.getMimeType(cvPath);
+        String mimeType = context.getMimeType(path);
         if (mimeType == null) {        
             // set to binary type if MIME mapping not found
             mimeType = "application/octet-stream";

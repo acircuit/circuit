@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.AC.DAO.AdminAdvisorDAO;
 import org.AC.DAO.MessageDAO;
 import org.AC.dto.MessageDTO;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
 
 /********************************CLASS SUMMARY*****************************************************
 * 
@@ -34,6 +36,8 @@ import org.AC.dto.MessageDTO;
 @WebServlet("/AdminEmailController")
 public class AdminEmailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(AdminEmailController.class); 
+
    
  	/**************************************COMMENTS***************************************************
 	 * This class will get the email from the admin and get the AdvisorId from the advisordetails table.
@@ -49,6 +53,8 @@ public class AdminEmailController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BasicConfigurator.configure();
+		logger.info("Entered doPost method of AdminEmailController");
 		String email = request.getParameter("email");
 		if(email != null){
 			AdminAdvisorDAO dao = new AdminAdvisorDAO();
@@ -64,7 +70,6 @@ public class AdminEmailController extends HttpServlet {
 			        rd.forward(request, response);
 				}
 			}
-		
-		
-		}
+		logger.info("EXit doPost method of AdminEmailController");
+	}
 }	

@@ -68,7 +68,7 @@ public class BookASessionServlet extends HttpServlet {
 		String datetimepicker5 = request.getParameter("datetimepicker5");
 		String datetimepicker6 = request.getParameter("datetimepicker6");
 		String query = request.getParameter("query");
-		String aId = (String) request.getSession().getAttribute("advisorId");
+		String aId = (String) request.getParameter("aId");
 		int userId = 0;
 		int requestId = 0;
 		userId = (Integer)request.getSession().getAttribute("userId");

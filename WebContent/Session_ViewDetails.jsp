@@ -170,15 +170,14 @@
 													<textarea class="form-control" rows="3" readonly="readonly"><c:out value="${session.getSessionPlan()}"/></textarea>
 												</div>
 											</div>	
-											<input type="hidden" value="${session.getSessionId()}"name="sId" >			
+											<input type="hidden" id="sId" value="${session.getSessionId()}"name="sId" >			
 										</c:forEach>
 										<div style="height:10px"></div>
 										<c:if test="${(!fromPreviousSession && !fromCancelledSession)}">
-											<h4><a href="#">
-											Chat with User</a>
+											<h4><a data-toggle="modal" data-target="#messageuser" onclick="getmessages()">Message User</a>
 											</h4>
-											<h4><a href="#">
-											View Past Conversation</a>
+											<h4>
+											<a data-toggle="modal" data-target="#uploadfile" onclick="getFiles()">Upload Files</a>
 											</h4>
 										</c:if>
 										<hr>
@@ -196,8 +195,106 @@
 							</div> 
 				 </div> 
 				 </c:forEach>
+				 
 			</div>
+			<div class="modal fade" id="messageuser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">Message User</h4>
+						</div>
+						<div class="modal-body">
+							<div id="page-wrapper1">
+				            <div class="row">
+				                <div class="col-lg-12">
+				                    <h1 class="page-header">Message</h1>
+				                </div>
+				                <!-- /.col-lg-12 -->
+				            </div>
+				            <!-- /.row -->
+				            <div class="row">
+				                    <div class="chat-panel panel panel-default">
+				                        <div class="panel-heading">
+				                            <i class="fa fa-comments fa-fw"></i>
+				                            Message
+										</div>
+				                        <!-- /.panel-heading -->
+				                        
+				                        <div  class="panel-body">
+				                      	  <ul id="message" class='chat'>
 
+				                           </ul> 
+				                        </div>
+				                        <form >
+					                        <!-- /.panel-body -->
+					                        <div class="panel-footer">
+					                            <div class="input-group">
+					                                <input  id ="advisormessage" type="text" class="form-control input-sm" name="advisormessage" placeholder="Type your message here..." />
+					                                <span class="input-group-btn">
+					                                <input type="button" onclick="setmessage()" class="btn btn-warning btn-sm" id="btn-chat" value="Send">	
+					                                </span>
+					                            </div>
+					                        </div>
+				                        </form>
+				                        <!-- /.panel-footer -->
+				                    </div>
+				                    <!-- /.panel .chat-panel -->
+				           		 </div>
+				            <!-- /.row -->
+				        		</div>
+						
+						
+						</div>						
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="uploadfile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title" id="myModalLabel">Files</h4>
+						</div>
+						<div class="modal-body">
+							<form id="uploadform" class="form-horizontal" role="form" enctype="multipart/form-data"  method="post">
+	    			
+							<div id="part2">
+								<h4>Uploaded Files :</h4>
+								<div id="uploadedfiles">
+									
+								</div>
+                                <hr>
+                                <div class="form-group">
+                                    <label for="icode" class="col-md-3 control-label">Upload Files</label>
+                                    <div id = "fileupload" class="col-md-9">
+										<input type="file" id="uploadFile" name="file" required="required">
+										<p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="icode" class="col-md-3 control-label">Purpose</label>
+                                    <div id = "filepurpose" class="col-md-9">
+										<input type="text" id="purpose" onchange="checkFile()" name="purpose" required="required">
+										<p class="help-block"></p>
+                                    </div>
+                                </div>
+                                <div id="response">
+                                </div>
+								<hr>
+								 <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                    	<input id="btn-signup" type="button" onclick="setfile()" class="btn btn-info" value="Submit">
+                                    </div>
+                                </div>
+							 </div><!--part2-->	
+                     </form>
+						</div>						
+					</div>
+				</div>
+			</div>
+			
 			
         </div>    
         </div>
@@ -243,6 +340,70 @@
         format: 'dd/MM/yyyy hh:mm:ss',
         language:'en'
       });
+	  function setmessage(){
+		  var val = $("#advisormessage").val();
+			  alert(123);
+			  $.ajax({
+	              url : 'SessionMessagesController', // Your Servlet mapping or JSP(not suggested)
+	              data : {"sId" : $("#sId").val(),"message" : val,"advisor":true},
+	              type : 'POST',
+	              dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+	              success : function(response) {
+	            	  flag = response;
+	              },
+	              error : function(request, textStatus, errorThrown) {
+	            	  flag = false;
+	                  alert(errorThrown);
+	              }
+	          }); 
+			  getmessages();
+	  }
+	  function getmessages(){
+			  $.ajax({
+	              url : 'SessionMessagesController', // Your Servlet mapping or JSP(not suggested)
+	              data : {"sId" : $("#sId").val()},
+	              type : 'POST',
+	              dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+	              success : function(response) {
+	            	  $('#message').html(response);
+	              },
+	              error : function(request, textStatus, errorThrown) {
+	                  alert(errorThrown);
+	              }
+	          }); 	
+	  }
+	  function setfile(){
+		  var formData = new FormData();
+		  formData.append("myFile", document.getElementById("uploadFile").files[0]);
+		  formData.append("sId",$("#sId").val());
+		  formData.append("purpose",$("#purpose").val());
+		  formData.append("fromUser",false);	  
+		  var xhr = new XMLHttpRequest();
+		  xhr.open("POST", "SessionFileController");
+		  xhr.send(formData);
+		  xhr.onreadystatechange=function()
+		  {
+		  if (xhr.readyState==4 && xhr.status==200)
+		    {
+		    document.getElementById("response").innerHTML=xhr.responseText;
+		    getFiles();
+		    }
+		  }
+	  }
+	  function getFiles(){
+		  $.ajax({
+              url : 'SessionFileController', // Your Servlet mapping or JSP(not suggested)
+              data : {"sId" : $("#sId").val(),"getFile" : true,"advisor":true},
+              type : 'POST',
+              dataType : 'html', // Returns HTML as plain text; included script tags are evaluated when inserted in the DOM.
+              success : function(response) {
+            	  $('#uploadedfiles').html(response);
+              },
+              error : function(request, textStatus, errorThrown) {
+                  alert(errorThrown);
+              }
+          }); 	
+	  }
     </script>
     <!-- Page-Level Demo Scripts - Notifications - Use for reference -->
     <script>

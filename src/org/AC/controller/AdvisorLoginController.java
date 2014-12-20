@@ -110,8 +110,8 @@ public class AdvisorLoginController extends HttpServlet {
 					        	
 					        }else{
 						        request.getSession().setAttribute("isLogin", "advisor");
-								RequestDispatcher rd = getServletContext().getRequestDispatcher("/MyAccount.jsp");
-						        rd.forward(request, response);
+						        response.sendRedirect("MyAccount.jsp");
+
 					        }
 						}else{
 							request.setAttribute("loginverificationfailed","true");

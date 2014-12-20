@@ -101,17 +101,12 @@ public class UserMyAccountUpcomingSessionController extends HttpServlet {
 					}
 				}
 			}
-			if(list.size() > 0  && list1.size() > 0 && list2.size() > 0) {
 				request.setAttribute("requests", list1);
 				request.setAttribute("advisordetails", list2);
 				request.setAttribute("sId", sessionId);
 				
 				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UserUpcomingSession.jsp");
 		        rd.forward(request, response);
-			}else{
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/UserUpcomingSession.jsp");
-		        rd.forward(request, response);
-			}
 		}
 		logger.info("Exit doGet method of UserMyAccountUpcomingSessionController");
 

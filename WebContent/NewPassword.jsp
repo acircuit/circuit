@@ -29,14 +29,16 @@
    		    String advisorId = "";
     		String userId = "";
     		String controller = "";
-    		advisorId = (String)request.getSession().getAttribute("advisorId");
-    		userId = (String)request.getSession().getAttribute("userId");
-    		if(!("").equals(advisorId) && advisorId != null){
+    		String uId = (String)request.getParameter("uId");
+    		String aId = (String)request.getParameter("aId");
+    		String id = "";
+    		if(uId == null){
     			controller = "ForgotPasswordNewPasswordController";
+    			id = aId;
     		}else{
     			controller = "UserForgotPasswordNewPasswordController";
+    			id = uId;
     		}
-	out.println(controller);
     	%>
 </head>
 <body>
@@ -51,7 +53,7 @@
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
                         <form id="loginform" class="form-horizontal" role="form" action="<%=controller %>" method="post">
-                                    
+                              <input type="hidden" name="id" value="<%=id%>"> 
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input id="login-password" type="password" class="form-control" name="NewPassword" placeholder="New Password">
